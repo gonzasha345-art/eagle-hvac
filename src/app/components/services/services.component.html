@@ -1,0 +1,63 @@
+<section class="services-hero py-6">
+  <div class="container">
+    <h1>Our Services</h1>
+    <p class="subtitle">Comprehensive HVAC and Electrical Solutions for Commercial and Residential Needs</p>
+  </div>
+</section>
+
+<section class="services-content py-6">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-detail-card" *ngFor="let service of services">
+        <div class="service-header">
+          <div class="service-icon"><i [class]="'fas ' + service.icon"></i></div>
+          <h3>{{ service.title }}</h3>
+        </div>
+        <p class="service-desc">{{ service.description }}</p>
+        <ul class="service-details">
+          <li *ngFor="let detail of service.details"><i class="fas fa-check"></i> {{ detail }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="service-categories py-6">
+  <div class="container">
+    <h2 class="text-center">Our Expertise</h2>
+    
+    <div class="category-section">
+      <h3>Commercial Services</h3>
+      <p>We specialize in providing comprehensive HVAC and electrical solutions for commercial properties of all sizes. From office buildings and retail spaces to industrial facilities, our team has the expertise to handle complex installations, maintenance, and emergency repairs.</p>
+      <p><strong>Benefits:</strong></p>
+      <ul class="benefits">
+        <li>Minimized downtime with professional service</li>
+        <li>Energy-efficient systems reduce operational costs</li>
+        <li>Preventive maintenance plans available</li>
+        <li>24/7 emergency support</li>
+      </ul>
+    </div>
+
+    <div class="category-section">
+      <h3>Residential Services</h3>
+      <p>Your home comfort is our priority. We offer complete HVAC and electrical services to keep your family comfortable and safe. Whether you need a new installation, routine maintenance, or emergency repairs, our trusted technicians are here to help.</p>
+      <p><strong>Benefits:</strong></p>
+      <ul class="benefits">
+        <li>Improved comfort and air quality</li>
+        <li>Lower energy bills with efficient systems</li>
+        <li>Extended equipment lifespan</li>
+        <li>Peace of mind with professional service</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section py-6">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Need Professional Service?</h2>
+      <p>Contact us today for a free consultation and estimate</p>
+      <a routerLink="/contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </div>
+</section>

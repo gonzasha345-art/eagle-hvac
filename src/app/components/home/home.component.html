@@ -1,0 +1,57 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h1>Welcome to Eagle HVAC & Electrical</h1>
+      <p>Professional HVAC and Electrical Services for Your Home and Business</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" (click)="navigateToContact()">Get a Quote</button>
+        <button class="btn btn-secondary" (click)="navigateToServices()">Learn More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services-preview py-6">
+  <div class="container">
+    <h2 class="text-center mb-4">Our Services</h2>
+    <div class="grid grid-2">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-building"></i></div>
+        <h3>Commercial HVAC</h3>
+        <p>Professional heating, ventilation, and air conditioning solutions for commercial properties, offices, and industrial facilities.</p>
+        <a (click)="navigateToServices()" class="read-more">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-home"></i></div>
+        <h3>Residential HVAC</h3>
+        <p>Keep your home comfortable year-round with our reliable HVAC services for heating and cooling systems.</p>
+        <a (click)="navigateToServices()" class="read-more">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Electrical Services</h3>
+        <p>From installation to repair and maintenance, we provide comprehensive electrical services for commercial and residential needs.</p>
+        <a (click)="navigateToServices()" class="read-more">Learn More →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-wrench"></i></div>
+        <h3>Maintenance & Repair</h3>
+        <p>Regular maintenance keeps your systems running efficiently and prevents costly breakdowns. Available 24/7 for emergencies.</p>
+        <a (click)="navigateToServices()" class="read-more">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section py-6">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Experience Professional Service?</h2>
+      <p>Contact us today for a free consultation and quote</p>
+      <button class="btn btn-primary" (click)="navigateToContact()">Contact Us Now</button>
+    </div>
+  </div>
+</section>
