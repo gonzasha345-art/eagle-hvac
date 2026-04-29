@@ -50,59 +50,59 @@ export class ContactComponent implements OnInit {
     this.submitSuccess = false;
     this.submitError = false;
 
-    const formData = {
-      ...this.contactForm.value,
-      companyPhone: '260-413-9966',
-      companyEmail: 'gonzasha345@gmail.com'
-    };
+    const formData = this.contactForm.value;
 
-    // Log the form data (for demonstration - replace with actual backend call)
-    this.emailService.logFormData(formData);
-
-    // Simulate successful submission
-    setTimeout(() => {
-      this.submitting = false;
-      this.submitSuccess = true;
-      this.contactForm.reset();
-      this.submitted = false;
-
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        this.submitSuccess = false;
-      }, 5000);
-    }, 1000);
-
-    /* Uncomment this when you have a backend endpoint set up:
+    // Send email using EmailJS
     this.emailService.sendContactForm(formData).subscribe(
       (response) => {
+        console.log('Email sent successfully:', response);
         this.submitting = false;
         this.submitSuccess = true;
         this.contactForm.reset();
         this.submitted = false;
 
+        // Reset success message after 5 seconds
         setTimeout(() => {
           this.submitSuccess = false;
         }, 5000);
       },
       (error) => {
+        console.error('Error sending email:', error);
         this.submitting = false;
         this.submitError = true;
-        this.errorMessage = 'Failed to send message. Please try again.';
-        console.error('Error:', error);
+        this.errorMessage = 'Failed to send message. Please try again or call us directly.';
       }
     );
-    */
+  }
+
+  scrollToForm(): void {
+    const formElement = document.querySelector('.contact-form-section');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   formatPhoneNumber(event: any): void {
-    let value = event.target.value.replace(/\D/g, '');
-    if (value.length <= 10) {
-      if (value.length > 6) {
-        value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
-      } else if (value.length > 3) {
-        value = value.slice(0, 3) + '-' + value.slice(3);
-      }
-      this.contactForm.patchValue({ phone: value }, { emitEvent: false });
+    const input = event.target.value.replace(/\D/g, '');
+    if (input.length > 0) {
+      const formatted = input.length <= 3 
+        ? input 
+        : input.length <= 6 
+        ? `${input.slice(0, 3)}-${input.slice(3)}` 
+        : `${input.slice(0, 3)}-${input.slice(3, 6)}-${input.slice(6, 10)}`;
+      this.contactForm.get('phone')?.setValue(formatted, { emitEvent: false });
     }
   }
+
+  // formatPhoneNumber(event: any): void {
+  //   let value = event.target.value.replace(/\D/g, '');
+  //   if (value.length <= 10) {
+  //     if (value.length > 6) {
+  //       value = value.slice(0, 3) + '-' + value.slice(3, 6) + '-' + value.slice(6);
+  //     } else if (value.length > 3) {
+  //       value = value.slice(0, 3) + '-' + value.slice(3);
+  //     }
+  //     this.contactForm.patchValue({ phone: value }, { emitEvent: false });
+  //   }
+  // }
 }

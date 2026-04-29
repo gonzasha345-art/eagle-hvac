@@ -1,24 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import emailjs from '@emailjs/browser';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
-  // Backend endpoint for email (you'll need to set this up on your server)
-  private apiUrl = '/api/send-email';
+  // EmailJS configuration - Get your keys from https://dashboard.emailjs.com
+  private serviceId = 'service_YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
+  private templateId = 'template_YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
+  private publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
 
-  constructor(private http: HttpClient) { }
+  constructor() {
+    // Initialize EmailJS
+    emailjs.init(this.publicKey);
+  }
 
   sendContactForm(data: any): Observable<any> {
-    // Note: This requires a backend endpoint to send emails
-    // For now, it sends to the API endpoint you configure
-    return this.http.post(this.apiUrl, {
-      ...data,
-      phone: '260-413-9966',
-      email: 'gonzasha345@gmail.com'
-    });
+    // Send email using EmailJS
+    const templateParams = {
+      to_email: '260-413-9966',  // Your email or phone number formatted as email
+      to_phone: '260-413-9966',  // Your phone number
+      from_name: data.name,
+      from_email: data.email,
+      from_phone: data.phone,
+      service_type: data.serviceType,
+      message: data.message,
+      preferred_contact: data.preferredContact
+    };
+
+    return from(emailjs.send(this.serviceId, this.templateId, templateParams));
   }
 
   // Alternative: Log form data for demonstration
