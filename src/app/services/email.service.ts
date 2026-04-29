@@ -19,8 +19,8 @@ export class EmailService {
   sendContactForm(data: any): Observable<any> {
     // Send email using EmailJS
     const templateParams = {
-      to_email: '260-413-9966',  // Your email or phone number formatted as email
-      to_phone: '260-413-9966',  // Your phone number
+      to_email: '248-805-6611',  // Your email or phone number formatted as email
+      to_phone: '248-805-6611',  // Your phone number
       from_name: data.name,
       from_email: data.email,
       from_phone: data.phone,
@@ -36,8 +36,8 @@ export class EmailService {
   logFormData(data: any): void {
     console.log('Contact Form Submission:', {
       ...data,
-      phone: '260-413-9966',
-      sendTo: 'gonzasha345@gmail.com',
+      phone: '248-805-6611',
+      sendTo: 'eric@eaglehce.com',
       timestamp: new Date()
     });
   }

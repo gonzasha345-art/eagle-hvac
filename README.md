@@ -1,4 +1,4 @@
-# Eagle HVAC & Electrical Company - Angular Website
+# Eagle Heating & Cooling Company - Angular Website
 
 A professional, responsive Angular website for Eagle HVAC and Electrical Company featuring complete service showcases, an interactive contact form, and modern UX/UI design.
 
@@ -8,9 +8,9 @@ A professional, responsive Angular website for Eagle HVAC and Electrical Company
 - **Responsive Design** - Mobile-first approach that works on all devices
 - **Service Showcase** - Display commercial and residential HVAC/electrical services
 - **About Page** - Company mission, values, and team information
-- **Contact Form** - Interactive form with validation that sends inquiries to gonzasha345@gmail.com
+- **Contact Form** - Interactive form with validation that sends inquiries to eric@eaglehce.com
 - **Professional UI/UX** - Modern design with smooth animations and transitions
-- **24/7 Emergency Contact** - Direct phone (260-413-9966) and email links
+- **24/7 Emergency Contact** - Direct phone (248-805-6611) and email links
 - **Accessibility** - Built with semantic HTML and best practices
 
 ## Tech Stack
@@ -108,8 +108,8 @@ The contact form includes:
 **Form Submission:**
 - Form data is logged to the console for demonstration
 - Currently ready for backend integration via `/api/send-email`
-- Sends inquiries to: **gonzasha345@gmail.com**
-- Company phone: **260-413-9966**
+- Sends inquiries to: **eric@eaglehce.com**
+- Company phone: **248-805-6611**
 
 ### Setting Up Email Backend
 
@@ -117,7 +117,7 @@ To enable actual email functionality, set up a backend API endpoint that:
 
 1. Accepts POST requests at `/api/send-email`
 2. Receives form data with user information
-3. Sends email to gonzasha345@gmail.com
+3. Sends email to eric@eaglehce.com
 
 Example backend implementation (Node.js/Express):
 ```javascript
@@ -126,7 +126,7 @@ app.post('/api/send-email', async (req, res) => {
   
   // Send email using nodemailer, SendGrid, or similar
   const mailOptions = {
-    to: 'gonzasha345@gmail.com',
+    to: 'eric@eaglehce.com',
     subject: `New Contact Form Submission - ${serviceType}`,
     html: `
       <h2>New Contact Request</h2>
@@ -161,8 +161,8 @@ Edit the color scheme in `src/styles.css`:
 ### Phone & Email
 
 Update contact details throughout the site:
-- Company Phone: `260-413-9966`
-- Company Email: `gonzasha345@gmail.com`
+- Company Phone: `248-805-6611`
+- Company Email: `eric@eaglehce.com`
 
 ## Available Commands
 
@@ -196,11 +196,11 @@ npm run watch
 
 ## License
 
-© 2026 Eagle HVAC & Electrical Company. All rights reserved.
+© 2026 Eagle Heating & Cooling Company. All rights reserved.
 
 ## Support
 
 For technical support or questions about the website:
-- 📞 Phone: 260-413-9966
-- ✉️ Email: gonzasha345@gmail.com
-- 🚨 24/7 Emergency: 260-413-9966
+- 📞 Phone: 248-805-6611
+- ✉️ Email: eric@eaglehce.com
+- 🚨 24/7 Emergency: 248-805-6611
