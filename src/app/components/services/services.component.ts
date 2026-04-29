@@ -30,25 +30,25 @@ export class ServicesComponent {
       ]
     },
     {
-      title: 'Commercial Electrical',
-      icon: 'fa-bolt',
-      description: 'Complete electrical services for commercial properties including installation, maintenance, and repairs.',
+      title: 'Commercial Water Heater Services',
+      icon: 'fa-industry',
+      description: 'Complete water heater solutions for commercial properties including installation, maintenance, and repairs.',
       details: [
-        'Electrical system design',
+        'Water heater system design',
         'Code-compliant installation',
         'Preventive maintenance',
-        'Emergency electrical service'
+        'Emergency water heater service'
       ]
     },
     {
-      title: 'Residential Electrical',
-      icon: 'fa-lightbulb',
-      description: 'Professional electrical services to keep your home safe and functional.',
+      title: 'Residential Water Heater Services',
+      icon: 'fa-shower',
+      description: 'Professional water heater services to keep your home supplied with hot water safely and efficiently.',
       details: [
-        'Wiring and rewiring',
-        'Panel upgrades',
-        'Outlet and switch installation',
-        'Electrical safety inspections'
+        'Tank and tankless installation',
+        'System upgrades',
+        'Repair and replacement',
+        'Water heater safety inspections'
       ]
     },
     {
@@ -65,7 +65,7 @@ export class ServicesComponent {
     {
       title: 'Emergency Service',
       icon: 'fa-phone',
-      description: 'Available 24/7 for urgent HVAC and electrical emergencies. We respond quickly to keep you comfortable and safe.',
+      description: 'Available 24/7 for urgent HVAC and water heater emergencies. We respond quickly to keep you comfortable and safe.',
       details: [
         'Round-the-clock availability',
         'Fast response times',
