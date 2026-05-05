@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -6,15 +7,29 @@ require('dotenv').config();
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
-const siteUrl = process.env.SITE_URL || 'http://127.0.0.1:4200';
+const host = process.env.HOST || '0.0.0.0';
+const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 const mailTo = process.env.MAIL_TO || 'eric@eaglehce.com';
 const mailFrom = process.env.MAIL_FROM || process.env.SMTP_USER;
 const distPath = path.join(__dirname, '..', 'dist', 'eagle-hvac');
+const indexPath = path.join(distPath, 'index.html');
+const hasAngularBuild = fs.existsSync(indexPath);
 const rateLimitWindowMs = 15 * 60 * 1000;
 const maxSubmissionsPerWindow = 5;
 const submissions = new Map();
 
-app.use(cors({ origin: siteUrl }));
+app.get('/api/health', (_req, res) => {
+  res.json({ ok: true });
+});
+
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json({ limit: '32kb' }));
 
 function cleanText(value, maxLength = 1000) {
@@ -92,8 +107,17 @@ function renderEmail(data) {
   `;
 }
 
-app.get('/api/health', (_req, res) => {
-  res.json({ ok: true });
+app.get('/', (_req, res) => {
+  if (hasAngularBuild) {
+    return res.sendFile(indexPath);
+  }
+
+  return res.json({
+    ok: true,
+    service: 'Eagle HVAC email API',
+    health: '/api/health',
+    sendEmail: '/api/send-email'
+  });
 });
 
 app.post('/api/send-email', async (req, res) => {
@@ -134,15 +158,29 @@ app.post('/api/send-email', async (req, res) => {
   }
 });
 
-app.use(express.static(distPath));
+if (hasAngularBuild) {
+  app.use(express.static(distPath));
+}
+
 app.use((req, res, next) => {
   if (req.method !== 'GET' || req.path.startsWith('/api')) {
     return next();
   }
 
-  res.sendFile(path.join(distPath, 'index.html'));
+  if (hasAngularBuild) {
+    return res.sendFile(indexPath);
+  }
+
+  return res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(port, () => {
-  console.log(`Eagle HVAC server listening on port ${port}`);
+app.use((error, _req, res, _next) => {
+  console.error('Unhandled request error:', error);
+  res.status(500).json({ message: 'Internal server error' });
+});
+
+app.listen(port, host, () => {
+  console.log(`Eagle HVAC server listening on ${host}:${port}`);
+  console.log(`Allowed origins: ${allowedOrigins.join(', ') || 'none'}`);
+  console.log(`Angular build detected: ${hasAngularBuild}`);
 });
