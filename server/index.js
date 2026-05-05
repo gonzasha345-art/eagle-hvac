@@ -8,9 +8,16 @@ require('dotenv').config();
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const host = process.env.HOST || '0.0.0.0';
-const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200')
+const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200,https://gonzasha345-art.github.io')
   .split(',')
   .map((origin) => origin.trim())
+  .map((origin) => {
+    try {
+      return new URL(origin).origin;
+    } catch (_error) {
+      return origin;
+    }
+  })
   .filter(Boolean);
 const mailTo = process.env.MAIL_TO || 'eric@eaglehce.com';
 const mailFrom = process.env.MAIL_FROM || process.env.SMTP_USER;
@@ -29,7 +36,17 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(null, false);
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json({ limit: '32kb' }));
 
 function cleanText(value, maxLength = 1000) {
