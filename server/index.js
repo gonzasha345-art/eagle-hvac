@@ -1,9 +1,12 @@
 const path = require('path');
 const fs = require('fs');
+const dns = require('dns');
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+
+dns.setDefaultResultOrder('ipv4first');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
