@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 const port = Number(process.env.PORT || 3000);
 const host = process.env.HOST || '0.0.0.0';
-const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200,https://gonzasha345-art.github.io')
+const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200,http://localhost:4200,https://eagleheatandcool.com,https://www.eagleheatandcool.com')
   .split(',')
   .map((origin) => origin.trim())
   .map((origin) => {
@@ -19,7 +19,7 @@ const allowedOrigins = (process.env.SITE_URL || 'http://127.0.0.1:4200,https://g
     }
   })
   .filter(Boolean);
-const mailTo = process.env.MAIL_TO || 'eric@eaglehce.com';
+const mailTo = process.env.MAIL_TO || 'eric@eagleheatandcool.com';
 const mailFrom = process.env.MAIL_FROM || process.env.SMTP_USER;
 const distPath = path.join(__dirname, '..', 'dist', 'eagle-hvac');
 const indexPath = path.join(distPath, 'index.html');

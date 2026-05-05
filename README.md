@@ -8,7 +8,7 @@ A professional, responsive Angular website for Eagle HVAC and Electrical Company
 - **Responsive Design** - Mobile-first approach that works on all devices
 - **Service Showcase** - Display commercial and residential HVAC/electrical services
 - **About Page** - Company mission, values, and team information
-- **Contact Form** - Interactive form with validation that sends inquiries to eric@eaglehce.com
+- **Contact Form** - Interactive form with validation that sends inquiries to eric@eagleheatandcool.com
 - **Professional UI/UX** - Modern design with smooth animations and transitions
 - **24/7 Emergency Contact** - Direct phone (248-805-6611) and email links
 - **Accessibility** - Built with semantic HTML and best practices
@@ -107,7 +107,7 @@ The contact form includes:
 
 **Form Submission:**
 - Form data is submitted to the backend at `/api/send-email`
-- Sends inquiries to: **eric@eaglehce.com**
+- Sends inquiries to: **eric@eagleheatandcool.com**
 - Company phone: **248-805-6611**
 
 ### Setting Up Email Backend
@@ -124,7 +124,7 @@ SMTP_SECURE=false
 SMTP_USER=your-smtp-username
 SMTP_PASS=your-smtp-password-or-app-password
 MAIL_FROM=your-smtp-username
-MAIL_TO=eric@eaglehce.com
+MAIL_TO=eric@eagleheatandcool.com
 ```
 
 3. Run the backend locally:
@@ -166,7 +166,7 @@ Edit the color scheme in `src/styles.css`:
 
 Update contact details throughout the site:
 - Company Phone: `248-805-6611`
-- Company Email: `eric@eaglehce.com`
+- Company Email: `eric@eagleheatandcool.com`
 
 ## Available Commands
 
@@ -209,5 +209,5 @@ npm run watch
 
 For technical support or questions about the website:
 - 📞 Phone: 248-805-6611
-- ✉️ Email: eric@eaglehce.com
+- ✉️ Email: eric@eagleheatandcool.com
 - 🚨 24/7 Emergency: 248-805-6611

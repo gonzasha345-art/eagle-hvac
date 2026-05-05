@@ -19,7 +19,7 @@ export class EmailService {
     console.log('Contact Form Submission:', {
       ...data,
       phone: '248-805-6611',
-      sendTo: 'eric@eaglehce.com',
+      sendTo: 'eric@eagleheatandcool.com',
       timestamp: new Date()
     });
   }
