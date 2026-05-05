@@ -7,7 +7,7 @@
     "start:api": "node server/index.js",
     "start:web": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
-    "build:ghpages": "ng build --configuration production --base-href /eagle-hvac/",
+    "build:ghpages": "ng build --configuration production --base-href /",
     "deploy": "npm run build:ghpages && gh-pages -d dist/eagle-hvac",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
