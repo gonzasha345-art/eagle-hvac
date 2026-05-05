@@ -70,7 +70,7 @@ export class ContactComponent implements OnInit {
         console.error('Error sending email:', error);
         this.submitting = false;
         this.submitError = true;
-        this.errorMessage = 'Failed to send message. Please try again or call us directly.';
+        this.errorMessage = error?.error?.message || 'Failed to send message. Please try again or call us directly.';
       }
     );
   }

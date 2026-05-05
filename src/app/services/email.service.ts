@@ -1,35 +1,17 @@
 import { Injectable } from '@angular/core';
-import emailjs from '@emailjs/browser';
-import { Observable, from } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
-  // EmailJS configuration - Get your keys from https://dashboard.emailjs.com
-  private serviceId = 'service_YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
-  private templateId = 'template_YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
-  private publicKey = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+  private apiUrl = this.getApiUrl();
 
-  constructor() {
-    // Initialize EmailJS
-    emailjs.init(this.publicKey);
-  }
+  constructor(private http: HttpClient) {}
 
   sendContactForm(data: any): Observable<any> {
-    // Send email using EmailJS
-    const templateParams = {
-      to_email: '248-805-6611',  // Your email or phone number formatted as email
-      to_phone: '248-805-6611',  // Your phone number
-      from_name: data.name,
-      from_email: data.email,
-      from_phone: data.phone,
-      service_type: data.serviceType,
-      message: data.message,
-      preferred_contact: data.preferredContact
-    };
-
-    return from(emailjs.send(this.serviceId, this.templateId, templateParams));
+    return this.http.post(this.apiUrl, data);
   }
 
   // Alternative: Log form data for demonstration
@@ -40,5 +22,15 @@ export class EmailService {
       sendTo: 'eric@eaglehce.com',
       timestamp: new Date()
     });
+  }
+
+  private getApiUrl(): string {
+    const isLocal =
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1';
+
+    return isLocal
+      ? '/api/send-email'
+      : 'https://eagle-hvac.onrender.com/api/send-email';
   }
 }

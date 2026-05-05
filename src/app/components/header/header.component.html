@@ -2,13 +2,10 @@
   <div class="container">
     <div class="header-content">
       <div class="logo">
-        <div class="logo-minimal">
-          <span class="logo-icon">⚙</span>
-          <span class="logo-text">Eagle</span>
-        </div>
+        <span class="brand-name">Eagle Heating & Cooling</span>
       </div>
       
-      <nav [class.active]="menuOpen" class="nav">
+      <nav id="primary-navigation" [class.active]="menuOpen" class="nav">
         <ul>
           <li><a (click)="navigateTo('')" class="nav-link">Home</a></li>
           <li><a (click)="navigateTo('services')" class="nav-link">Services</a></li>
@@ -17,10 +14,18 @@
         </ul>
       </nav>
 
-      <button class="menu-toggle" (click)="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Toggle navigation menu"
+        [attr.aria-expanded]="menuOpen"
+        aria-controls="primary-navigation"
+        [class.active]="menuOpen"
+        (click)="toggleMenu()"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </button>
     </div>
   </div>

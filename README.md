@@ -68,9 +68,9 @@ cd eagle-hvac
 npm install
 ```
 
-3. **Start the development server:**
+3. **Start the Angular development server:**
 ```bash
-npm start
+npm run start:web
 ```
 
 4. **Open your browser and visit:**
@@ -106,43 +106,47 @@ The contact form includes:
 - ✓ Preferred contact method selection
 
 **Form Submission:**
-- Form data is logged to the console for demonstration
-- Currently ready for backend integration via `/api/send-email`
+- Form data is submitted to the backend at `/api/send-email`
 - Sends inquiries to: **eric@eaglehce.com**
 - Company phone: **248-805-6611**
 
 ### Setting Up Email Backend
 
-To enable actual email functionality, set up a backend API endpoint that:
+This project includes an Express/Nodemailer backend in `server/index.js`.
 
-1. Accepts POST requests at `/api/send-email`
-2. Receives form data with user information
-3. Sends email to eric@eaglehce.com
+1. Copy `.env.example` to `.env`
+2. Fill in your SMTP credentials:
 
-Example backend implementation (Node.js/Express):
-```javascript
-app.post('/api/send-email', async (req, res) => {
-  const { name, email, phone, serviceType, message, preferredContact } = req.body;
-  
-  // Send email using nodemailer, SendGrid, or similar
-  const mailOptions = {
-    to: 'eric@eaglehce.com',
-    subject: `New Contact Form Submission - ${serviceType}`,
-    html: `
-      <h2>New Contact Request</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Service Type:</strong> ${serviceType}</p>
-      <p><strong>Preferred Contact:</strong> ${preferredContact}</p>
-      <p><strong>Message:</strong><br>${message}</p>
-    `
-  };
-  
-  // Send email and respond
-  res.json({ success: true });
-});
+```bash
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your-smtp-username
+SMTP_PASS=your-smtp-password-or-app-password
+MAIL_FROM=your-smtp-username
+MAIL_TO=eric@eaglehce.com
 ```
+
+3. Run the backend locally:
+
+```bash
+npm run start:api
+```
+
+4. In another terminal, run the Angular app with the API proxy:
+
+```bash
+npm run start:web
+```
+
+5. For production, build Angular and run the Node server:
+
+```bash
+npm run build
+npm start
+```
+
+The backend serves both `/api/send-email` and the compiled Angular app from `dist/eagle-hvac`.
 
 ## Customization
 
@@ -167,7 +171,10 @@ Update contact details throughout the site:
 ## Available Commands
 
 ```bash
-# Development server
+# Angular development server
+npm run start:web
+
+# Backend server
 npm start
 
 # Production build
